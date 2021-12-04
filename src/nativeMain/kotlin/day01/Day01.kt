@@ -5,11 +5,11 @@ import readAllText
 class Day01 {
     fun main() {
         println("Solution for Day 01, part 1 is: ${part1()}")
-        println("Solution for Day 02, part 2 is: ${part2()}")
+        println("Solution for Day 01, part 2 is: ${part2()}")
     }
 
     private fun part1(): Int {
-        val string = readAllText("./src/nativeMain/kotlin/problem01/input.txt")
+        val string = readAllText("./src/nativeMain/kotlin/day01/input.txt")
         var prev = -1
         var count = 0
         string.lines().forEach {
@@ -22,7 +22,7 @@ class Day01 {
     }
 
     private fun part2(): Int {
-        val string = readAllText("./src/nativeMain/kotlin/problem01/input.txt")
+        val string = readAllText("./src/nativeMain/kotlin/day01/input.txt")
         var a = -1
         var b = -1
         var c = -1

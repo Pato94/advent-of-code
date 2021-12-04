@@ -8,8 +8,7 @@ import platform.posix.fopen
 
 fun readAllText(path: String): String {
     val returnBuffer = StringBuilder()
-    val file = fopen(path, "r")
-        ?: throw IllegalStateException("Can't open file")
+    val file = fopen(path, "r") ?: throw IllegalStateException("Can't open file $path")
 
     try {
         memScoped {
