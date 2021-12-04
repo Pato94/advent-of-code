@@ -1,3 +1,5 @@
+import day01.Day01
+
 fun main() {
-    println("Hello, Kotlin/Native!")
+    Day01().main()
 }
