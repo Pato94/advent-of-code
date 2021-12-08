@@ -5,6 +5,7 @@ import day04.Day04
 import day05.Day05
 import day06.Day06
 import day07.Day07
+import day08.Day08
 
 fun main() {
     Day01().main()
@@ -14,4 +15,5 @@ fun main() {
     Day05().main()
     Day06().main()
     Day07().main()
+    Day08().main()
 }
