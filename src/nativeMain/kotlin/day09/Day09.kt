@@ -1,7 +1,9 @@
 package day09
 
+import logTime
 import readAllText
 
+@Suppress("INTEGER_OVERFLOW")
 class Day09 {
 
     fun main() {
@@ -18,16 +20,12 @@ class Day09 {
         var risk = 0
         for (i in array.indices) {
             for (j in array[i].indices) {
-                if (isLowPoint(array, i, j)) {
-                    risk += array[i][j] + 1
-                }
+                if (!isLocalMin(array, i, j)) continue
+
+                risk += array[i][j] + 1
             }
         }
         return risk
-    }
-
-    private fun isLowPoint(array: Array<IntArray>, i: Int, j: Int): Boolean {
-        return neighbors(array, i, j).all { (k, l) -> array[i][j] < array[k][l] }
     }
 
     private fun part2(): Int {
@@ -36,34 +34,62 @@ class Day09 {
             it.trim().split("").mapNotNull { it.toIntOrNull() }.toIntArray()
         }.toTypedArray()
 
-        val basins = mutableListOf<Set<Pair<Int, Int>>>()
+        // kotlin native don't have heaps
+        val sizes = IntArray(3)
+
         for (i in array.indices) {
             for (j in array[i].indices) {
-                if (isLowPoint(array, i, j)) {
-                    basins.add(createBasin(array, i, j))
+                if (!isLocalMin(array, i, j)) continue
+
+                val basinSize = basinSize(array, i, j)
+
+                var minIndex = 0
+                for (k in sizes.indices) {
+                    if (sizes[k] < sizes[minIndex]) {
+                        minIndex = k
+                    }
+                }
+                if (basinSize > sizes[minIndex]) {
+                    sizes[minIndex] = basinSize
                 }
             }
         }
-        return basins.sortedByDescending { it.size }.take(3)
-            .foldRight(1) { e, a -> a * e.size }
+        return sizes[0] * sizes[1] * sizes[2]
     }
 
-    private fun neighbors(array: Array<IntArray>, i: Int, j: Int): List<Pair<Int, Int>> {
-        val list = mutableListOf<Pair<Int, Int>>()
-        if (i > 0) list.add(i - 1 to j)
-        if (j < array[i].size - 1) list.add(i to j + 1)
-        if (i < array.size - 1) list.add(i + 1 to j)
-        if (j > 0) list.add(i to j - 1)
-        return list
+    private fun isLocalMin(array: Array<IntArray>, i: Int, j: Int): Boolean {
+        if (i > 0 && array[i][j] >= array[i - 1][j]) return false
+        if (j < array[i].size - 1 && array[i][j] >= array[i][j + 1]) return false
+        if (i < array.size - 1 && array[i][j] >= array[i + 1][j]) return false
+        if (j > 0 && array[i][j] >= array[i][j - 1]) return false
+        return true
     }
 
-    private fun createBasin(array: Array<IntArray>, i: Int, j: Int): Set<Pair<Int, Int>> {
-        val list = mutableSetOf<Pair<Int, Int>>()
-        list.add(i to j)
-        val minNeighbors = neighbors(array, i, j).filter { (k, l) -> array[i][j] < array[k][l] && array[k][l] < 9 }
-        minNeighbors.forEach { (k, l) ->
-            list.addAll(createBasin(array, k, l))
+    private fun basinSize(array: Array<IntArray>, i: Int, j: Int): Int {
+        val basin = Array(array.size) { BooleanArray(array[0].size) }
+        storeInBasin(array, basin, i, j)
+        var basinSize = 0
+        for (k in basin.indices) {
+            for (l in basin[0].indices) {
+                if (basin[k][l]) basinSize++
+            }
         }
-        return list
+        return basinSize
+    }
+
+    private fun storeInBasin(array: Array<IntArray>, basin: Array<BooleanArray>, i: Int, j: Int) {
+        basin[i][j] = true
+        if (i > 0 && array[i][j] < array[i - 1][j] && array[i - 1][j] < 9 && !basin[i - 1][j]) {
+            storeInBasin(array, basin, i - 1, j)
+        }
+        if (j < array[i].size - 1 && array[i][j] < array[i][j + 1] && array[i][j + 1] < 9 && !basin[i][j + 1]) {
+            storeInBasin(array, basin, i, j + 1)
+        }
+        if (i < array.size - 1 && array[i][j] < array[i + 1][j] && array[i + 1][j] < 9 && !basin[i + 1][j]) {
+            storeInBasin(array, basin, i + 1, j)
+        }
+        if (j > 0 && array[i][j] < array[i][j - 1] && array[i][j - 1] < 9 && !basin[i][j - 1]) {
+            storeInBasin(array, basin, i, j - 1)
+        }
     }
 }
