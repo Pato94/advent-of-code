@@ -7,15 +7,21 @@ import day06.Day06
 import day07.Day07
 import day08.Day08
 import day09.Day09
+import kotlin.system.measureTimeMillis
 
 fun main() {
-    Day01().main()
-    Day02().main()
-    Day03().main()
-    Day04().main()
-    Day05().main()
-    Day06().main()
-    Day07().main()
-    Day08().main()
-    Day09().main()
+    logTime { Day01().main() }
+    logTime { Day02().main() }
+    logTime { Day03().main() }
+    logTime { Day04().main() }
+    logTime { Day05().main() }
+    logTime { Day06().main() }
+    logTime { Day07().main() }
+    logTime { Day08().main() }
+    logTime { Day09().main() }
+}
+
+fun logTime(f: () -> Unit) {
+    val time = measureTimeMillis(f)
+    println("Took $time millis")
 }
