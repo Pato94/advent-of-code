@@ -78,7 +78,8 @@ class Day13 {
         return totalPoints
     }
 
-    private fun part2(): Int {        val string = readAllText("./src/nativeMain/kotlin/day13/input.txt")
+    private fun part2(): Int {
+        val string = readAllText("./src/nativeMain/kotlin/day13/input.txt")
         val pointRegex = Regex("(\\d+),(\\d+)")
         val foldRegex = Regex("fold along (\\w+)=(\\d+)")
         val array = Array(2000) { BooleanArray(2000) }
