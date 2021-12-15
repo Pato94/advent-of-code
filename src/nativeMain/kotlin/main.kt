@@ -12,6 +12,7 @@ import day11.Day11
 import day12.Day12
 import day13.Day13
 import day14.Day14
+import day15.Day15
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -29,6 +30,7 @@ fun main() {
 //    logTime { Day12().main() } it's taking too long, optimize
     logTime { Day13().main() }
     logTime { Day14().main() }
+//    logTime { Day15().main() } it's taking way too long, optimize
 }
 
 fun logTime(f: () -> Unit) {
