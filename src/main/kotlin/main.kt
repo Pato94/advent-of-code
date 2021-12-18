@@ -15,26 +15,28 @@ import day14.Day14
 import day15.Day15
 import day16.Day16
 import day17.Day17
+import day18.Day18
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    logTime { Day01().main() }
-    logTime { Day02().main() }
-    logTime { Day03().main() }
-    logTime { Day04().main() }
-    logTime { Day05().main() }
-    logTime { Day06().main() }
-    logTime { Day07().main() }
-    logTime { Day08().main() }
-    logTime { Day09().main() }
-    logTime { Day10().main() }
-    logTime { Day11().main() }
-    logTime { Day12().main() }
-    logTime { Day13().main() }
-    logTime { Day14().main() }
-    logTime { Day15().main() }
-    logTime { Day16().main() }
-    logTime { Day17().main() }
+//    logTime { Day01().main() }
+//    logTime { Day02().main() }
+//    logTime { Day03().main() }
+//    logTime { Day04().main() }
+//    logTime { Day05().main() }
+//    logTime { Day06().main() }
+//    logTime { Day07().main() }
+//    logTime { Day08().main() }
+//    logTime { Day09().main() }
+//    logTime { Day10().main() }
+//    logTime { Day11().main() }
+//    logTime { Day12().main() }
+//    logTime { Day13().main() }
+//    logTime { Day14().main() }
+//    logTime { Day15().main() }
+//    logTime { Day16().main() }
+//    logTime { Day17().main() }
+    logTime { Day18().main() }
 }
 
 fun logTime(f: () -> Unit) {
