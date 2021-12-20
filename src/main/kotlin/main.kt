@@ -1,22 +1,4 @@
-import day01.Day01
-import day02.Day02
-import day03.Day03
-import day04.Day04
-import day05.Day05
-import day06.Day06
-import day07.Day07
-import day08.Day08
-import day09.Day09
-import day10.Day10
-import day11.Day11
-import day12.Day12
-import day13.Day13
-import day14.Day14
-import day15.Day15
-import day16.Day16
-import day17.Day17
-import day18.Day18
-import day19.Day19
+import day20.Day20
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -38,7 +20,8 @@ fun main() {
 //    logTime { Day16().main() }
 //    logTime { Day17().main() }
 //    logTime { Day18().main() }
-    logTime { Day19().main() }
+//    logTime { Day19().main() }
+    logTime { Day20().main() }
 }
 
 fun logTime(f: () -> Unit) {
