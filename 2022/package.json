@@ -2,5 +2,9 @@
   "name": "2022",
   "version": "1.0.0",
   "dependencies": {
+    "basetag": "^2.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
