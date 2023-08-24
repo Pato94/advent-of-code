@@ -49,7 +49,7 @@ function solve1(input, rowToCheck) {
     return count - uniqueBeaconsInRowToCheck.length;
 }
 
-function solve2(input) {
+function solve2(input, end) {
     const sensorsAndBeacons = []
     for (const line of input) {
         if (line === "") continue
@@ -57,7 +57,7 @@ function solve2(input) {
         const [_, sx, sy, bx, by] = regex.exec(line).map(it => parseInt(it))
         sensorsAndBeacons.push([[sx, sy], [bx, by]])
     }
-    for (let i = 0; i < 4000000; i++) {
+    for (let i = 0; i < end; i++) {
         const e = getExcluded(sensorsAndBeacons, i)
         if (e.length > 1) {
             return (e[0][1] + 1) * 4000000 + i
